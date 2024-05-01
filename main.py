@@ -251,7 +251,7 @@ class PlotConfigurator:
 
         self.points.sort(key=lambda point: point[0])
 
-        print(f"Итерация #{self.iteration_count}: x = {x_new:.6f}, z = {self.compute_function(x_new):.6f}, max R = {R_max:.3f}\n")
+        # print(f"Итерация #{self.iteration_count}: x = {x_new:.6f}, z = {self.compute_function(x_new):.6f}, max R = {R_max:.3f}\n")
 
         # self.fig.clear()
         # self.ax = self.fig.add_subplot(111)
@@ -273,17 +273,17 @@ class PlotConfigurator:
             z_i_plus_1 = self.points[i + 1][1]
 
             M.append(abs(z_i - z_i_plus_1) / (x_i_plus_1 - x_i))
-        print(f"Iteration #{self.iteration_count} - M list: {M}")
+        # print(f"Iteration #{self.iteration_count} - M list: {M}")
 
         max_M = max(M)
-        print(f"Iteration #{self.iteration_count} - max M: {max_M}")
+        # print(f"Iteration #{self.iteration_count} - max M: {max_M}")
 
         m = self.r * max_M if max_M > 0 else 1
 
         R_list = []
         for i in range(len(self.points) - 1):
             R_list.append(self.piyavskiy_characteristic(self.points[i], self.points[i + 1], m))
-        print(f"Iteration #{self.iteration_count} - R list: {R_list}")
+        # print(f"Iteration #{self.iteration_count} - R list: {R_list}")
         max_R_index = R_list.index(max(R_list))
 
         interval_left_index = max_R_index
@@ -307,7 +307,7 @@ class PlotConfigurator:
         for i in range(len(self.points) - 1):
             R_list.append(self.piyavskiy_characteristic(self.points[i], self.points[i + 1], self.r))
         max_R_index = R_list.index(max(R_list))
-        print(f"Iteration #{self.iteration_count + 1} - R list: {R_list}")
+        # print(f"Iteration #{self.iteration_count + 1} - R list: {R_list}")
 
         interval_left_index = max_R_index
         interval_right_index = max_R_index + 1
